@@ -8,7 +8,8 @@ import { toast } from "sonner";
 import CameraModal from "@/components/CameraModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import deltinLogo from "@/images/deltin.jpeg";
+import deltinLogo from "@/images/deltinroyal.jpeg";
+import deltinLogoFinal from "@/images/deltinfinal.png";
 
 type GameType = "Poker" | "Teenpatti" | "Roulette";
 
@@ -166,7 +167,7 @@ const DeltinCasino = () => {
                         className="relative z-10 flex flex-col items-center"
                     >
                         <img
-                            src="../src/images/deltinfinal.png"
+                            src={deltinLogoFinal}
                             alt="Deltin Royale"
                             className="w-60 h-70"
                         // className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-2xl mb-6 shadow-[0_0_50px_rgba(168,85,247,0.4)] border border-purple-500/20 bg-black/40 p-2"
