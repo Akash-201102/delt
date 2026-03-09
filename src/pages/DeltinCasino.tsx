@@ -7,8 +7,8 @@ import { Upload, Download, Spade, Dices, RotateCcw, Loader2, AlertCircle, ArrowR
 import { toast } from "sonner";
 import CameraModal from "@/components/CameraModal";
 import { motion, AnimatePresence } from "framer-motion";
-
 import { useNavigate } from "react-router-dom";
+import deltinLogo from "@/images/deltin.jpeg";
 
 type GameType = "Poker" | "Teenpatti" | "Roulette";
 
@@ -42,9 +42,9 @@ const DeltinCasino = () => {
     }, [selectedGame, gameStates]);
 
     const games: { type: GameType; icon: React.ReactNode; color: string }[] = [
-        { type: "Poker", icon: <Spade className="w-5 h-5" />, color: "from-blue-600 to-indigo-700" },
-        { type: "Teenpatti", icon: <Dices className="w-5 h-5" />, color: "from-red-600 to-rose-700" },
-        { type: "Roulette", icon: <RotateCcw className="w-5 h-5" />, color: "from-emerald-600 to-teal-700" },
+        { type: "Poker", icon: <Spade className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
+        { type: "Teenpatti", icon: <Dices className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
+        { type: "Roulette", icon: <RotateCcw className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
     ];
 
     const handleGameClick = (type: GameType) => {
@@ -157,23 +157,35 @@ const DeltinCasino = () => {
     return (
         <div className="min-h-screen bg-[#050510] text-gray-100 p-4 md:p-8 font-sans selection:bg-purple-500/30">
             <div className="max-w-6xl mx-auto space-y-12">
-                {/* Header */}
-                <header className="text-center space-y-4 relative">
+
+                <header className="text-center space-y-6 relative overflow-hidden py-8">
                     <div className="absolute inset-0 -top-20 bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-5xl md:text-7xl font-extrabold tracking-tighter bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent"
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="relative z-10 flex flex-col items-center"
                     >
-                        Deltin Royale
-                    </motion.h1>
+                        <img
+                            src="../src/images/deltinfinal.png"
+                            alt="Deltin Royale"
+                            className="w-60 h-70"
+                        // className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-2xl mb-6 shadow-[0_0_50px_rgba(168,85,247,0.4)] border border-purple-500/20 bg-black/40 p-2"
+                        />
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-5xl md:text-7xl font-extrabold tracking-tighter bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent"
+                        >
+
+                        </motion.h1>
+                    </motion.div>
                     <p className="text-gray-400 text-lg"></p>
                 </header>
 
                 {/* Games List */}
                 <section className="space-y-6">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-2xl font-bold tracking-tight text-gray-200">Games List</h2>
+                        {/* <h2 className="text-2xl font-bold tracking-tight text-gray-200">Games List</h2> */}
                         <div className="h-[1px] flex-1 mx-6 bg-gradient-to-r from-gray-800 to-transparent" />
                     </div>
 
@@ -185,8 +197,8 @@ const DeltinCasino = () => {
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => handleGameClick(game.type)}
                                 className={`relative group p-[1px] rounded-2xl transition-all duration-500 ${selectedGame === game.type
-                                    ? `bg-gradient-to-br ${game.color} shadow-[0_10px_40px_-10px_rgba(30,58,138,0.5)]`
-                                    : "bg-gray-800/40 hover:bg-gray-700/40"
+                                    ? `bg-gradient-to-br ${game.color} shadow-[0_10px_40px_-10px_rgba(251,191,36,0.5)]`
+                                    : "bg-gray-800/40 hover:bg-amber-500/10"
                                     }`}
                             >
                                 <div className={`relative h-28 flex flex-col items-center justify-center gap-3 rounded-[15px] ${selectedGame === game.type ? "bg-black/40 backdrop-blur-md" : "bg-[#0a0a1a]"
@@ -321,7 +333,7 @@ const DeltinCasino = () => {
                                                 {isDragging ? 'Drop it here!' : `Drop ${selectedGame} Image`}
                                             </p>
                                             <p className="text-gray-500 text-sm max-w-sm mx-auto">
-                                                Or click to browse. AI will start extraction immediately.
+                                                Or click to browse to collect the data.
                                             </p>
                                         </div>
                                     </motion.div>
@@ -332,7 +344,7 @@ const DeltinCasino = () => {
                 </Card>
 
                 {/* Footer Info */}
-                <footer className="pt-12 text-center space-y-6">
+                {/* <footer className="pt-12 text-center space-y-6">
                     <div className="flex justify-center">
                         <Button
                             variant="ghost"
@@ -349,7 +361,7 @@ const DeltinCasino = () => {
                         <AlertCircle className="w-3 h-3 text-purple-500" />
                         AI extracts data directly from images. Accuracy depends on image quality.
                     </div>
-                </footer>
+                </footer> */}
             </div>
 
             {isCameraOpen && (
