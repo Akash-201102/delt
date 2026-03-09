@@ -11,11 +11,11 @@ import { useNavigate } from "react-router-dom";
 import deltinLogo from "@/images/deltinroyal.jpeg";
 import deltinLogoFinal from "@/images/deltinfinal.png";
 
-type GameType = "Poker" | "Teenpatti" | "Roulette";
+type GameType = "Poker" | "Gaming" | "Roulette";
 
 interface GameState {
     pokerData: TableData | null;
-    teenpattiData: TableData | null;
+    gamingData: TableData | null;
     rouletteData: TableData | null;
 }
 
@@ -24,7 +24,7 @@ const DeltinCasino = () => {
     const [selectedGame, setSelectedGame] = useState<GameType>("Poker");
     const [gameStates, setGameStates] = useState<GameState>({
         pokerData: null,
-        teenpattiData: null,
+        gamingData: null,
         rouletteData: null,
     });
     const [isExtracting, setIsExtracting] = useState(false);
@@ -37,14 +37,14 @@ const DeltinCasino = () => {
         console.log("Deltin Casino State Update:", {
             selectedGame,
             hasPoker: !!gameStates.pokerData,
-            hasTeenpatti: !!gameStates.teenpattiData,
+            hasGaming: !!gameStates.gamingData,
             hasRoulette: !!gameStates.rouletteData
         });
     }, [selectedGame, gameStates]);
 
     const games: { type: GameType; icon: React.ReactNode; color: string }[] = [
         { type: "Poker", icon: <Spade className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
-        { type: "Teenpatti", icon: <Dices className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
+        { type: "Gaming", icon: <Dices className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
         { type: "Roulette", icon: <RotateCcw className="w-5 h-5" />, color: "from-amber-400 via-yellow-500 to-amber-600" },
     ];
 
