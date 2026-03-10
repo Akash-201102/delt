@@ -157,9 +157,9 @@ const DeltinCasino = () => {
 
     return (
         <div className="min-h-screen bg-[#050510] text-gray-100 p-4 md:p-8 font-sans selection:bg-purple-500/30">
-            <div className="max-w-6xl mx-auto space-y-12">
+            <div className="max-w-6xl mx-auto space-y-4 md:space-y-12">
 
-                <header className="text-center space-y-6 relative overflow-hidden py-8">
+                <header className="text-center space-y-4 md:space-y-6 relative overflow-hidden py-4 md:py-8">
                     <div className="absolute inset-0 -top-20 bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -169,8 +169,7 @@ const DeltinCasino = () => {
                         <img
                             src={deltinLogoFinal}
                             alt="Deltin Royale"
-                            className="w-60 h-70"
-                        // className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-2xl mb-6 shadow-[0_0_50px_rgba(168,85,247,0.4)] border border-purple-500/20 bg-black/40 p-2"
+                            className="w-25 h-20 md:w-60 md:h-70 object-contain"
                         />
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
@@ -190,21 +189,21 @@ const DeltinCasino = () => {
                         <div className="h-[1px] flex-1 mx-6 bg-gradient-to-r from-gray-800 to-transparent" />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-6">
                         {games.map((game) => (
                             <motion.button
                                 key={game.type}
                                 whileHover={{ scale: 1.02, translateY: -4 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => handleGameClick(game.type)}
-                                className={`relative group p-[1px] rounded-2xl transition-all duration-500 w-full max-w-[240px] mx-auto md:max-w-none ${selectedGame === game.type
-                                    ? `bg-gradient-to-br ${game.color} shadow-[0_10px_40px_-10px_rgba(251,191,36,0.5)]`
+                                className={`relative group p-[1px] rounded-xl md:rounded-2xl transition-all duration-500 w-full ${selectedGame === game.type
+                                    ? `bg-gradient-to-br ${game.color} shadow-[0_5px_20px_-5px_rgba(251,191,36,0.5)] md:shadow-[0_10px_40px_-10px_rgba(251,191,36,0.5)]`
                                     : "bg-gray-800/40 hover:bg-amber-500/10"
                                     }`}
                             >
-                                <div className={`relative h-20 md:h-28 flex flex-col items-center justify-center gap-2 md:gap-3 rounded-[15px] ${selectedGame === game.type ? "bg-black/40 backdrop-blur-md" : "bg-[#0a0a1a]"
+                                <div className={`relative h-14 md:h-28 flex flex-col items-center justify-center gap-1 md:gap-3 rounded-[11px] md:rounded-[15px] ${selectedGame === game.type ? "bg-black/40 backdrop-blur-md" : "bg-[#0a0a1a]"
                                     }`}>
-                                    <div className={`transition-all duration-300 ${selectedGame === game.type ? "scale-90 md:scale-110 text-white" : "text-gray-500 group-hover:text-gray-300"
+                                    <div className={`transition-all duration-300 ${selectedGame === game.type ? "scale-75 md:scale-110 text-white" : "text-gray-500 group-hover:text-gray-300"
                                         }`}>
                                         {game.icon}
                                     </div>
@@ -233,7 +232,7 @@ const DeltinCasino = () => {
                                 <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${games.find(g => g.type === selectedGame)?.color}`} />
                                 {selectedGame} Data
                             </CardTitle>
-                            <p className="text-gray-500 text-xs italic">Records for {selectedGame}</p>
+                            {/* <p className="text-gray-500 text-xs italic">Records for {selectedGame}</p> */}
                         </div>
                         <div className="flex gap-2 items-center justify-center md:justify-end flex-wrap">
                             <input
@@ -324,7 +323,7 @@ const DeltinCasino = () => {
                                     >
                                         <div className="relative mb-6">
                                             <div className="absolute inset-0 bg-purple-500/20 blur-[40px] rounded-full" />
-                                            <div className={`relative w-20 h-20 rounded-2xl bg-gray-900 border flex items-center justify-center transition-colors ${isDragging ? 'border-purple-500' : 'border-gray-800'
+                                            <div className={`relative w-10 h-10 rounded-2xl bg-gray-900 border flex items-center justify-center transition-colors ${isDragging ? 'border-purple-500' : 'border-gray-800'
                                                 }`}>
                                                 <Upload className={`w-10 h-10 transition-colors ${isDragging ? 'text-purple-400' : 'text-gray-700'}`} />
                                             </div>
