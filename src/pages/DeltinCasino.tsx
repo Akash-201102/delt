@@ -102,7 +102,7 @@ const DeltinCasino = () => {
                 [stateKey]: structuredData
             }));
 
-            toast.success(`${selectedGame} data successfully extracted!`);
+            toast.success("Uploaded successfully, click the download button to view");
         } catch (error) {
             console.error("Extraction error details:", error);
             toast.error("Failed to extract data. Check the console for technical details.");
@@ -252,7 +252,7 @@ const DeltinCasino = () => {
                                 ) : (
                                     <Upload className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
                                 )}
-                                {isExtracting ? "Processing..." : "Extract"}
+                                {isExtracting ? "Processing..." : "Upload Data"}
                             </Button>
                             <Button
                                 onClick={() => setIsCameraOpen(true)}
@@ -280,34 +280,37 @@ const DeltinCasino = () => {
                             <AnimatePresence mode="wait">
                                 {currentData ? (
                                     <motion.div
-                                        key={`${selectedGame}-content`}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        className="overflow-auto"
+                                        key={`${selectedGame}-success`}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        className="flex-1 flex flex-col items-center justify-center p-12 text-center"
                                     >
-                                        <Table>
-                                            <TableHeader className="bg-gray-900/50 sticky top-0 z-10">
-                                                <TableRow className="border-gray-800 hover:bg-transparent">
-                                                    {currentData.headers.map((header, i) => (
-                                                        <TableHead key={i} className="text-gray-400 font-bold uppercase text-[10px] tracking-[0.2em] p-5">
-                                                            {header}
-                                                        </TableHead>
-                                                    ))}
-                                                </TableRow>
-                                            </TableHeader>
-                                            <TableBody>
-                                                {currentData.rows.map((row, i) => (
-                                                    <TableRow key={i} className="border-gray-800/30 hover:bg-white/[0.02] transition-colors">
-                                                        {row.map((cell, j) => (
-                                                            <TableCell key={j} className="p-5 text-gray-300 text-sm font-medium border-gray-800/10">
-                                                                {cell}
-                                                            </TableCell>
-                                                        ))}
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
+                                        <div className="relative mb-6">
+                                            <div className="absolute inset-0 bg-green-500/20 blur-[40px] rounded-full" />
+                                            <div className="relative w-20 h-20 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                                                <Download className="w-10 h-10 text-green-400" />
+                                            </div>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <h3 className="text-2xl font-bold text-white">Data Ready for Export</h3>
+                                            <p className="text-gray-400 text-sm max-w-xs mx-auto">
+                                                The {selectedGame} data has been successfully processed and is ready for download.
+                                            </p>
+                                            <Button
+                                                onClick={handleExport}
+                                                className="bg-green-500 hover:bg-green-600 text-white rounded-xl px-10 h-14 font-bold shadow-[0_10px_30px_-10px_rgba(34,197,94,0.3)] transition-all active:scale-95"
+                                            >
+                                                <Download className="w-5 h-5 mr-2" />
+                                                Download Excel
+                                            </Button>
+                                            <button
+                                                onClick={() => setGameStates(prev => ({ ...prev, [`${selectedGame.toLowerCase()}Data`]: null }))}
+                                                className="block mx-auto text-gray-500 hover:text-gray-300 text-xs font-medium transition-colors"
+                                            >
+                                                Upload another image
+                                            </button>
+                                        </div>
                                     </motion.div>
                                 ) : (
                                     <motion.div
