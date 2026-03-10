@@ -197,18 +197,18 @@ const DeltinCasino = () => {
                                 whileHover={{ scale: 1.02, translateY: -4 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => handleGameClick(game.type)}
-                                className={`relative group p-[1px] rounded-2xl transition-all duration-500 ${selectedGame === game.type
+                                className={`relative group p-[1px] rounded-2xl transition-all duration-500 w-full max-w-[240px] mx-auto md:max-w-none ${selectedGame === game.type
                                     ? `bg-gradient-to-br ${game.color} shadow-[0_10px_40px_-10px_rgba(251,191,36,0.5)]`
                                     : "bg-gray-800/40 hover:bg-amber-500/10"
                                     }`}
                             >
-                                <div className={`relative h-28 flex flex-col items-center justify-center gap-3 rounded-[15px] ${selectedGame === game.type ? "bg-black/40 backdrop-blur-md" : "bg-[#0a0a1a]"
+                                <div className={`relative h-20 md:h-28 flex flex-col items-center justify-center gap-2 md:gap-3 rounded-[15px] ${selectedGame === game.type ? "bg-black/40 backdrop-blur-md" : "bg-[#0a0a1a]"
                                     }`}>
-                                    <div className={`transition-all duration-300 ${selectedGame === game.type ? "scale-110 text-white" : "text-gray-500 group-hover:text-gray-300"
+                                    <div className={`transition-all duration-300 ${selectedGame === game.type ? "scale-90 md:scale-110 text-white" : "text-gray-500 group-hover:text-gray-300"
                                         }`}>
                                         {game.icon}
                                     </div>
-                                    <span className={`font-bold tracking-widest uppercase text-xs ${selectedGame === game.type ? "text-white" : "text-gray-500 group-hover:text-gray-300"
+                                    <span className={`font-bold tracking-widest uppercase text-[10px] md:text-xs ${selectedGame === game.type ? "text-white" : "text-gray-500 group-hover:text-gray-300"
                                         }`}>
                                         {game.type}
                                     </span>
@@ -227,15 +227,15 @@ const DeltinCasino = () => {
 
                 {/* Action and Preview */}
                 <Card className="bg-[#0a0a1a]/80 border-gray-800/50 backdrop-blur-2xl overflow-hidden rounded-3xl shadow-2xl">
-                    <CardHeader className="border-b border-gray-800/50 p-6 flex flex-row items-center justify-between space-y-0">
+                    <CardHeader className="border-b border-gray-800/50 p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${games.find(g => g.type === selectedGame)?.color}`} />
                                 {selectedGame} Data
                             </CardTitle>
-                            <p className="text-gray-500 text-sm italic">Manage and view extracted {selectedGame} records</p>
+                            <p className="text-gray-500 text-xs italic">Records for {selectedGame}</p>
                         </div>
-                        <div className="flex gap-3">
+                        <div className="flex gap-2 items-center justify-center md:justify-end flex-wrap">
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -246,31 +246,31 @@ const DeltinCasino = () => {
                             <Button
                                 onClick={handleUploadClick}
                                 disabled={isExtracting}
-                                className="bg-white text-black hover:bg-gray-200 rounded-xl px-6 h-11 font-bold transition-all active:scale-95"
+                                className="bg-white text-black hover:bg-gray-200 rounded-xl px-3 md:px-6 h-9 md:h-11 text-xs md:text-sm font-bold transition-all active:scale-95 flex-1 md:flex-none"
                             >
                                 {isExtracting ? (
-                                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                    <Loader2 className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2 animate-spin" />
                                 ) : (
-                                    <Upload className="w-5 h-5 mr-2" />
+                                    <Upload className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
                                 )}
-                                {isExtracting ? "Processing..." : "Extract Data"}
+                                {isExtracting ? "Processing..." : "Extract"}
                             </Button>
                             <Button
                                 onClick={() => setIsCameraOpen(true)}
                                 disabled={isExtracting}
                                 variant="outline"
-                                className="rounded-xl px-4 h-11 border-gray-800 hover:bg-gray-800/50 text-gray-300 transition-all active:scale-95"
+                                className="rounded-xl px-2 md:px-4 h-9 md:h-11 border-gray-800 hover:bg-gray-800/50 text-gray-300 transition-all active:scale-95"
                                 title="Use Camera"
                             >
-                                <Camera className="w-5 h-5" />
+                                <Camera className="w-4 h-4 md:w-5 md:h-5" />
                             </Button>
                             {currentData && (
                                 <Button
                                     onClick={handleExport}
                                     variant="outline"
-                                    className="rounded-xl px-6 h-11 border-gray-800 hover:bg-gray-800/50 text-gray-300"
+                                    className="rounded-xl px-3 md:px-6 h-9 md:h-11 border-gray-800 hover:bg-gray-800/50 text-gray-300 text-xs md:text-sm"
                                 >
-                                    <Download className="w-5 h-5 mr-2" />
+                                    <Download className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
                                     Excel
                                 </Button>
                             )}
